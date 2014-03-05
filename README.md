@@ -2,7 +2,7 @@
 
 Counts the words in your current document
 
-![A screenshot of your spankin' package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+![A screenshot of your spankin' package](https://f.cloud.github.com/assets/584259/2331039/66e2bba2-a442-11e3-8d1f-7bd92287a40d.gif)
 
 ToDos:
 - Display count in selected area
