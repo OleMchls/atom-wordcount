@@ -1,15 +1,16 @@
 {
   "name": "wordcount",
   "main": "./lib/wordcount",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": true,
   "description": "A short description of your package",
-  "activationEvents": ["wordcount:toggle"],
+  "activationEvents": [
+    "wordcount:toggle"
+  ],
   "repository": "https://github.com/nesQuick/atom-wordcount",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
