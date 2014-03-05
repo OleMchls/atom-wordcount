@@ -1,7 +1,7 @@
 {
   "name": "wordcount",
   "main": "./lib/wordcount",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "description": "Counts the words in your current document",
   "activationEvents": [
