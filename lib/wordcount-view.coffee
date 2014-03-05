@@ -1,7 +1,7 @@
 {View} = require 'atom'
 
 module.exports =
-class AtomWordcountView extends View
+class WordcountView extends View
   @content: ->
     @div class: 'word-count inline-block'
 

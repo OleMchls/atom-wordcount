@@ -1,4 +1,4 @@
-# atom-wordcount package
+# wordcount package
 
 A short description of your package.
 
