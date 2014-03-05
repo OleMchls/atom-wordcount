@@ -14,6 +14,7 @@ class WordcountView extends View
         setTimeout this.attach, 1
     # Due to the lack of documentation of events, subscribing to this one seems most appropriate
     @subscribe atom.workspaceView, 'cursor:moved', @updateWordCountText
+    @subscribe atom.workspaceView.statusBar, 'active-buffer-changed', @updateWordCountText
 
   # Attach the view to the farthest right of the status bar
   attach: =>
