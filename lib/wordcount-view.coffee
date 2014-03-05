@@ -32,6 +32,6 @@ class WordcountView extends View
     @text("#{wordCount} W | #{charCount} C").show()
 
   count: (text) ->
-    words = text.split(' ').length
+    words = text.match(/\S+/g).length
     chars = text.match(/\w/g).length
     [words, chars]
