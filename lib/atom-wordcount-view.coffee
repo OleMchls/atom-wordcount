@@ -27,7 +27,7 @@ class AtomWordcountView extends View
 
   updateWordCountText: =>
     editor = atom.workspaceView.getActivePaneItem()
-    [wordCount, charCount] = @count editor.getText()
+    [wordCount, charCount] = @count editor?.getText()
     @text("#{wordCount} W | #{charCount} C").show()
 
   count: (text) ->
