@@ -3,22 +3,34 @@
 module.exports =
 class AtomWordcountView extends View
   @content: ->
-    @div class: 'atom-wordcount overlay from-top', =>
-      @div "The AtomWordcount package is Alive! It's ALIVE!", class: "message"
+    @div class: 'word-count inline-block'
 
-  initialize: (serializeState) ->
-    atom.workspaceView.command "atom-wordcount:toggle", => @toggle()
-
-  # Returns an object that can be retrieved when package is activated
-  serialize: ->
-
-  # Tear down any state and detach
-  destroy: ->
-    @detach()
-
-  toggle: ->
-    console.log "AtomWordcountView was toggled!"
-    if @hasParent()
-      @detach()
+  initialize: ->
+    # Make sure the view gets added last
+    if atom.workspaceView.statusBar
+      @attach()
     else
-      atom.workspaceView.append(this)
+      @subscribe atom.packages.once 'activated', =>
+        setTimeout this.attach, 1
+    # Due to the lack of documentation of events, subscribing to this one seems most appropriate
+    @subscribe atom.workspaceView, 'cursor:moved', @updateWordCountText
+
+  # Attach the view to the farthest right of the status bar
+  attach: =>
+    atom.workspaceView.statusBar.appendRight(this)
+
+  destroy: ->
+    @remove()
+
+  afterAttach: ->
+    @updateWordCountText()
+
+  updateWordCountText: =>
+    editor = atom.workspaceView.getActivePaneItem()
+    [wordCount, charCount] = @count editor.getText()
+    @text("#{wordCount} W | #{charCount} C").show()
+
+  count: (text) ->
+    words = text.split(' ').length
+    chars = text.match(/\w/g).length
+    [words, chars]
