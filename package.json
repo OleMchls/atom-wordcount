@@ -5,7 +5,7 @@
   "private": true,
   "description": "A short description of your package",
   "activationEvents": ["wordcount:toggle"],
-  "repository": "https://github.com/nesQuick/wordcount",
+  "repository": "https://github.com/nesQuick/atom-wordcount",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
