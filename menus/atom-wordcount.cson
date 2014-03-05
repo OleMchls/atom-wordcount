@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable atom-wordcount': 'atom-wordcount:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'atom-wordcount'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'atom-wordcount:toggle' }
+      ]
+    ]
+  }
+]
