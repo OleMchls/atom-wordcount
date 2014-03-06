@@ -2,6 +2,7 @@
 
 module.exports =
 class WordcountView extends View
+  CSS_SELECTED_CLASS: 'wordcount-select'
   @content: ->
     @div class: 'word-count inline-block'
 
@@ -28,10 +29,18 @@ class WordcountView extends View
 
   updateWordCountText: =>
     editor = atom.workspaceView.getActivePaneItem()
-    selection = if editor.getSelection? then editor.getSelection()?.getText() else ''
-    text = if editor?.getText? then editor.getText() else ''
-    [wordCount, charCount] = @count selection || text
+    text = @getCurrentText editor
+    [wordCount, charCount] = @count text
     @text("#{wordCount || 0} W | #{charCount || 0} C").show()
+
+  getCurrentText: (editor) =>
+    selection = if editor?.getSelection? then editor?.getSelection()?.getText() else ''
+    if selection
+      @addClass @CSS_SELECTED_CLASS
+    else
+      @removeClass @CSS_SELECTED_CLASS
+    text = if editor?.getText? then editor.getText() else ''
+    selection || text
 
   count: (text) ->
     words = text?.match(/\S+/g)?.length

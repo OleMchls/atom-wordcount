@@ -7,7 +7,7 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'wordcount'
+      'label': 'Wordcount'
       'submenu': [
         { 'label': 'Toggle', 'command': 'wordcount:toggle' }
       ]
