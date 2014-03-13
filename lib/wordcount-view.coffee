@@ -44,5 +44,5 @@ class WordcountView extends View
 
   count: (text) ->
     words = text?.match(/\S+/g)?.length
-    chars = text?.match(/\w/g)?.length
+    chars = text?.length
     [words, chars]
