@@ -19,7 +19,7 @@ class WordcountView extends View
 
   # Attach the view to the farthest right of the status bar
   attach: =>
-    atom.workspaceView.statusBar.appendRight(this)
+    atom.workspaceView.statusBar.prependRight(this)
 
   destroy: ->
     @remove()

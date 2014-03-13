@@ -15,7 +15,7 @@
   "repository": "https://github.com/nesQuick/atom-wordcount",
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">0.70.0"
   },
   "dependencies": {}
 }
