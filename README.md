@@ -6,7 +6,7 @@ Counts the words in your current document.
  - Actives automatically on textfiles
  - You can also define on which file extensions you want to activate it
 
-![A screenshot of your spankin' package](https://f.cloud.github.com/assets/584259/2331039/66e2bba2-a442-11e3-8d1f-7bd92287a40d.gif)
+![A screenshot of your spankin' package](https://f.cloud.github.com/assets/584259/2416999/d20bf610-ab12-11e3-8edf-b763c063504d.gif)
 
 ToDos:
 - ~~Display count in selected area~~
