@@ -9,9 +9,6 @@
     "word",
     "count"
   ],
-  "activationEvents": [
-    "wordcount:toggle"
-  ],
   "repository": "https://github.com/nesQuick/atom-wordcount",
   "license": "MIT",
   "engines": {

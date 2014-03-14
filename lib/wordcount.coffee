@@ -3,8 +3,16 @@ WordcountView = require './wordcount-view'
 module.exports =
   WordcountView: null
 
+  DEFAULT_FILES: 'md markdown readme txt rst'
+
   activate: ->
-    @WordcountView = new WordcountView()
+    atom.config.setDefaults('wordcount.files', {
+      'File extensions': @DEFAULT_FILES
+    })
+
+    setTimeout ->
+      @WordcountView = new WordcountView()
+    , 1000
 
   deactivate: ->
     @WordcountView.destroy()
