@@ -21,7 +21,7 @@ class WordcountView extends View
 
   attachOrDestroy: =>
     extensions = atom.config.get('wordcount.files')['File extensions'].split(' ').map (extension) -> extension.toLowerCase()
-    current_file_extension = atom.workspaceView.getActivePaneItem()?.buffer.file?.path.split('.').pop().toLowerCase()
+    current_file_extension = atom.workspaceView.getActivePaneItem()?.buffer?.file?.path.split('.').pop().toLowerCase()
     if current_file_extension in extensions
       @show()
     else
