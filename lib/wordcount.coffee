@@ -15,4 +15,5 @@ module.exports =
     , 1000
 
   deactivate: ->
+    @WordcountView = new WordcountView() unless @WordcountView
     @WordcountView.destroy()
