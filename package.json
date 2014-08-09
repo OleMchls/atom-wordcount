@@ -3,11 +3,17 @@
   "main": "./lib/wordcount",
   "version": "0.12.0",
   "private": true,
-  "description": "Counts the words in your current document",
+  "description": "Counts the words (and characters) in your current document, as well as in your selection and displays it in the status bar.",
   "keywords": [
     "word count",
     "word",
-    "count"
+    "count",
+    "character count",
+    "char",
+    "character",
+    "status",
+    "bar",
+    "highlight"
   ],
   "repository": "https://github.com/nesQuick/atom-wordcount",
   "license": "MIT",
