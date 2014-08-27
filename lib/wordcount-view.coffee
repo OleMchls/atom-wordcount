@@ -8,20 +8,20 @@ class WordcountView extends View
 
   initialize: ->
     # Make sure the view gets added
-    if atom.workspaceView.statusBar
+    if atom.workspace.statusBar
       @attach()
     else
       @subscribe atom.packages.once 'activated', @attach
     # Due to the lack of documentation of events, subscribing to this one seems most appropriate
-    @subscribe atom.workspaceView, 'cursor:moved', @updateWordCountText
-    @subscribe atom.workspaceView.statusBar, 'active-buffer-changed', @updateWordCountText
-    @subscribe atom.workspaceView.statusBar, 'active-buffer-changed', @attachOrDestroy
+    @subscribe atom.workspace, 'cursor:moved', @updateWordCountText
+    @subscribe atom.workspace.statusBar, 'active-buffer-changed', @updateWordCountText
+    @subscribe atom.workspace.statusBar, 'active-buffer-changed', @attachOrDestroy
     # Also watch for config changes
     #@observeConfig 'wordcount.files', @attachOrDestroy even if documented, this just throws errors at the moment
 
   attachOrDestroy: =>
     extensions = atom.config.get('wordcount.files')['File extensions'].split(' ').map (extension) -> extension.toLowerCase()
-    current_file_extension = atom.workspaceView.getActivePaneItem()?.buffer?.file?.path.split('.').pop().toLowerCase()
+    current_file_extension = atom.workspace.getActivePaneItem()?.buffer?.file?.path.split('.').pop().toLowerCase()
     if current_file_extension in extensions
       @show()
     else
@@ -29,7 +29,7 @@ class WordcountView extends View
 
   # Attach the view to the farthest right of the status bar
   attach: =>
-    atom.workspaceView.statusBar.prependRight(this)
+    atom.workspace.statusBar.prependRight(this)
     @attachOrDestroy()
 
   destroy: ->
