@@ -13,7 +13,7 @@ class WordcountView extends View
     else
       @subscribe atom.packages.once 'activated', @attach
     # Due to the lack of documentation of events, subscribing to this one seems most appropriate
-    @subscribe atom.workspaceView, 'cursor:moved', @updateWordCountText
+    @subscribe atom.workspace, 'cursor:moved', @updateWordCountText
     @subscribe atom.workspaceView.statusBar, 'active-buffer-changed', @updateWordCountText
     @subscribe atom.workspaceView.statusBar, 'active-buffer-changed', @attachOrDestroy
     # Also watch for config changes
@@ -21,7 +21,7 @@ class WordcountView extends View
 
   attachOrDestroy: =>
     extensions = atom.config.get('wordcount.files')['File extensions'].split(' ').map (extension) -> extension.toLowerCase()
-    current_file_extension = atom.workspaceView.getActivePaneItem()?.buffer?.file?.path.split('.').pop().toLowerCase()
+    current_file_extension = atom.workspace.getActivePaneItem()?.buffer?.file?.path.split('.').pop().toLowerCase()
     if current_file_extension in extensions
       @show()
     else
@@ -39,7 +39,7 @@ class WordcountView extends View
     @updateWordCountText()
 
   updateWordCountText: =>
-    editor = atom.workspaceView.getActivePaneItem()
+    editor = atom.workspace.getActivePaneItem()
     text = @getCurrentText editor
     [wordCount, charCount] = @count text
     @text("#{wordCount || 0} W | #{charCount || 0} C")
