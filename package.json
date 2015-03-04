@@ -1,7 +1,7 @@
 {
   "name": "wordcount",
   "main": "./lib/main",
-  "version": "0.13.1",
+  "version": "1.0.0",
   "description": "Counts the words (and characters) in your current document, as well as in your selection and displays it in the status bar.",
   "keywords": [
     "word count",
@@ -21,7 +21,9 @@
   },
   "consumedServices": {
     "status-bar": {
-      "versions": { "^0.58.0": "consumeStatusBar" }
+      "versions": {
+        "^0.58.0": "consumeStatusBar"
+      }
     }
   }
 }
