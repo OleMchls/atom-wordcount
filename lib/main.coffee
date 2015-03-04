@@ -5,9 +5,13 @@ tile = null
 module.exports =
 
   config:
-    files:
-      type: 'string'
-      default: 'md markdown readme txt rst'
+    extensions:
+      title: 'Autoactivated file extensions'
+      description: 'list of file extenstions which should have the wordcount plugin enabled'
+      type: 'array'
+      default: [ 'md', 'markdown', 'readme', 'txt', 'rst' ]
+      items:
+        type: 'string'
 
   activate: (state) ->
     view = new WordcountView()
@@ -21,7 +25,7 @@ module.exports =
     @show_or_hide_for_item atom.workspace.getActivePaneItem()
 
   show_or_hide_for_item: (item) ->
-    extensions = atom.config.get('wordcount.files').split(' ').map (extension) -> extension.toLowerCase()
+    extensions = (atom.config.get('wordcount.extensions') || []).map (extension) -> extension.toLowerCase()
     current_file_extension = item?.buffer?.file?.path.split('.').pop().toLowerCase()
     if current_file_extension in extensions
       view.show()
