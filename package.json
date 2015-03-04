@@ -1,8 +1,7 @@
 {
   "name": "wordcount",
-  "main": "./lib/wordcount",
+  "main": "./lib/main",
   "version": "0.13.1",
-  "private": true,
   "description": "Counts the words (and characters) in your current document, as well as in your selection and displays it in the status bar.",
   "keywords": [
     "word count",
@@ -18,7 +17,11 @@
   "repository": "https://github.com/nesQuick/atom-wordcount",
   "license": "MIT",
   "engines": {
-    "atom": ">0.70.0"
+    "atom": ">=0.180.0"
   },
-  "dependencies": {}
+  "consumedServices": {
+    "status-bar": {
+      "versions": { "^0.58.0": "consumeStatusBar" }
+    }
+  }
 }

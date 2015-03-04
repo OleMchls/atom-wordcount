@@ -5,4 +5,3 @@
 - Make checkbox to count whitespace as character or not
 - Write tests *hrhr*
 - Improve wordcount algorithm
-
