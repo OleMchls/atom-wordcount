@@ -28,9 +28,9 @@ module.exports =
     extensions = (atom.config.get('wordcount.extensions') || []).map (extension) -> extension.toLowerCase()
     current_file_extension = item?.buffer?.file?.path.split('.').pop().toLowerCase()
     if current_file_extension in extensions
-      view.show()
+      view.css("display", "inline-block")
     else
-      view.hide()
+      view.css("display", "none")
 
   consumeStatusBar: (statusBar) ->
     tile = statusBar.addRightTile(item: view, priority: 100)
