@@ -33,8 +33,9 @@ module.exports =
 
   show_or_hide_for_item: (item) ->
     extensions = (atom.config.get('wordcount.extensions') || []).map (extension) -> extension.toLowerCase()
+    no_extension = atom.config.get('wordcount.noextension') && item?.buffer?.file?.path.split('.').length == 1
     current_file_extension = item?.buffer?.file?.path.split('.').pop().toLowerCase()
-    if current_file_extension in extensions || (current_file_extension? && atom.config.get('wordcount.noextension'))
+    if no_extension or current_file_extension in extensions
       view.css("display", "inline-block")
     else
       view.css("display", "none")
