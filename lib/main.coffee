@@ -12,6 +12,13 @@ module.exports =
       default: [ 'md', 'markdown', 'readme', 'txt', 'rst' ]
       items:
         type: 'string'
+    noextension:
+      title: 'Autoactivate for files without an extension'
+      description: 'wordcount plugin enabled for files without a file extension'
+      type: 'boolean'
+      default: false
+      items:
+        type: 'boolean'
 
   activate: (state) ->
     view = new WordcountView()
@@ -26,8 +33,9 @@ module.exports =
 
   show_or_hide_for_item: (item) ->
     extensions = (atom.config.get('wordcount.extensions') || []).map (extension) -> extension.toLowerCase()
+    no_extension = atom.config.get('wordcount.noextension') && item?.buffer?.file?.path.split('.').length == 1
     current_file_extension = item?.buffer?.file?.path.split('.').pop().toLowerCase()
-    if current_file_extension in extensions
+    if no_extension or current_file_extension in extensions
       view.css("display", "inline-block")
     else
       view.css("display", "none")
