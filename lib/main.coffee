@@ -19,10 +19,14 @@ module.exports =
       default: false
       items:
         type: 'boolean'
+    goal:
+      title: 'Work toward a word goal'
+      description: 'shows a bar showing progress toward a word goal'
+      type: 'number'
+      default: 0
 
   activate: (state) ->
     view = new WordcountView()
-
     atom.workspace.observeTextEditors (editor) ->
       editor.onDidChange -> view.update_count editor
       editor.onDidChangeSelectionRange -> view.update_count editor
