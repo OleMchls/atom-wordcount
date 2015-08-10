@@ -14,7 +14,8 @@ class WordcountView extends View
     if goal = atom.config.get 'wordcount.goal'
       green = Math.round(wordCount / goal * 100)
       color = atom.config.get 'wordcount.goalColor'
-      @css('background', '-webkit-linear-gradient(left,' + color + green + '%, black ' + (100 - green) + '%')
+      console.log color
+      @css('background', '-webkit-linear-gradient(left,' + color + ' ' + green + '%, black ' + (100 - green) + '%')
 
   getCurrentText: (editor) =>
     selection = editor.getSelectedText()
