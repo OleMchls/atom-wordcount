@@ -12,6 +12,7 @@ module.exports =
       default: [ 'md', 'markdown', 'readme', 'txt', 'rst' ]
       items:
         type: 'string'
+      order: 1
     noextension:
       title: 'Autoactivate for files without an extension'
       description: 'wordcount plugin enabled for files without a file extension'
@@ -19,11 +20,19 @@ module.exports =
       default: false
       items:
         type: 'boolean'
+      order: 2
     goal:
       title: 'Work toward a word goal'
       description: 'shows a bar showing progress toward a word goal'
       type: 'number'
       default: 0
+      order: 3
+    goalColor:
+      title: 'Color for word goal'
+      description: 'use a CSS color value, like rgb(255, 255, 255) or green'
+      type: 'string'
+      default: 'rgb(0, 85, 0)'
+      order: 4
 
   activate: (state) ->
     view = new WordcountView()
