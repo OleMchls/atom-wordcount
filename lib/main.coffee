@@ -44,6 +44,12 @@ module.exports =
 
     @show_or_hide_for_item atom.workspace.getActivePaneItem()
 
+    atom.config.observe('wordcount.goal', @update_goal)
+
+  update_goal: (item) ->
+    if item is 0
+      view.css('background', 'transparent')
+
   show_or_hide_for_item: (item) ->
     extensions = (atom.config.get('wordcount.extensions') || []).map (extension) -> extension.toLowerCase()
     no_extension = atom.config.get('wordcount.noextension') && item?.buffer?.file?.path.split('.').length == 1
