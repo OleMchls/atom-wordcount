@@ -1,7 +1,7 @@
 {
   "name": "wordcount",
   "main": "./lib/main",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "Counts the words (and characters) in your current document, as well as in your selection and displays it in the status bar.",
   "keywords": [
     "word count",
