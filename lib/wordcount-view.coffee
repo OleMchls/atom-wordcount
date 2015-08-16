@@ -30,3 +30,4 @@ class WordcountView extends View
     words = text?.match(/\S+/g)?.length
     chars = text?.length
     [words, chars]
+    
