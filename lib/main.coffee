@@ -29,10 +29,15 @@ module.exports =
       order: 3
     goalColor:
       title: 'Color for word goal'
-      description: 'use a CSS color value, like rgb(255, 255, 255) or green'
+      description: 'use a CSS color value, such as rgb(0, 85, 255) or green'
       type: 'string'
       default: 'rgb(0, 85, 0)'
       order: 4
+    goalLineHeight:
+      title: 'Percentage height of word goal line'
+      type: 'string'
+      default: '20%'
+      order: 5
 
   activate: (state) ->
     view = new WordcountView()

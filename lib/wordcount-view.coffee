@@ -4,18 +4,31 @@ module.exports =
 class WordcountView extends View
   CSS_SELECTED_CLASS: 'wordcount-select'
 
+  constructor: ->
+    super
+    @divWords = document.createElement 'div'
+    @append @divWords
+
   @content: ->
     @div class: 'word-count inline-block'
 
   update_count: (editor) ->
     text = @getCurrentText editor
     [wordCount, charCount] = @count text
-    @text("#{wordCount || 0} W | #{charCount || 0} C")
+    @divWords.innerHTML = "#{wordCount || 0} W | #{charCount || 0} C"
     if goal = atom.config.get 'wordcount.goal'
+      if not @divGoal
+        @divGoal = document.createElement 'div'
+        @divGoal.style.width = '100%'
+        @append @divGoal
       green = Math.round(wordCount / goal * 100)
       green = 100 if green > 100
       color = atom.config.get 'wordcount.goalColor'
-      @css('background', '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, black 0%)')
+      @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, black 0%)'
+      percent = @height() * parseFloat(atom.config.get 'wordcount.goalLineHeight') / 100
+      height = @height() * percent;
+      @divGoal.style.height = height + 'px'
+      @divGoal.style.marginTop = -height + 'px'
 
   getCurrentText: (editor) =>
     selection = editor.getSelectedText()
@@ -30,4 +43,3 @@ class WordcountView extends View
     words = text?.match(/\S+/g)?.length
     chars = text?.length
     [words, chars]
-    
