@@ -9,7 +9,7 @@ module.exports =
       title: 'Autoactivated file extensions'
       description: 'list of file extenstions which should have the wordcount plugin enabled'
       type: 'array'
-      default: [ 'md', 'markdown', 'readme', 'txt', 'rst' ]
+      default: [ 'md', 'markdown', 'readme', 'txt', 'rst', 'adoc' ]
       items:
         type: 'string'
     noextension:
