@@ -38,6 +38,14 @@ module.exports =
       type: 'string'
       default: '20%'
       order: 5
+    ignorecode:
+      title: 'Ignore markdown code blocks'
+      description: 'do not count words inside of code blocks'
+      type: 'boolean'
+      default: false
+      items:
+        type: 'boolean'
+      order: 6
 
   activate: (state) ->
     view = new WordcountView()

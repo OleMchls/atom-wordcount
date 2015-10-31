@@ -40,6 +40,10 @@ class WordcountView extends View
     selection || text
 
   count: (text) ->
+    if atom.config.get('wordcount.ignorecode')
+      codePatterns = [/`{3}(.|\s)*?`{3}/g, /[ ]{4}.*?$/gm]
+      for pattern in codePatterns
+        text = text?.replace pattern, ''
     words = text?.match(/\S+/g)?.length
     chars = text?.length
     [words, chars]
