@@ -33,3 +33,4 @@ When you get to the *Install* menu, type <kbd>wordcount</kbd> in the search text
 - Alex Claman
 - Cyril Mazur
 - Harry Ng. (From [Word Counter](http://wordcounttools.com))
+- Vaughn Iverson
