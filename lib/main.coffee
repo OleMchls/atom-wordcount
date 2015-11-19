@@ -46,6 +46,14 @@ module.exports =
       items:
         type: 'boolean'
       order: 6
+    allfiles:
+      title: 'Run wordcount for all file extensions'
+      description: 'wordcount is shown for all file extensions'
+      type: 'boolean'
+      default: true
+      items:
+        type: 'boolean'
+      order: 7
 
   activate: (state) ->
     view = new WordcountView()
@@ -68,7 +76,8 @@ module.exports =
     not_saved = not item?.buffer?.file?
     no_extension = atom.config.get('wordcount.noextension') && item?.buffer?.file?.path.split('.').length == 1
     current_file_extension = item?.buffer?.file?.path.split('.').pop().toLowerCase()
-    if no_extension or current_file_extension in extensions or not_saved
+    all_files = atom.config.get('wordcount.allfiles')
+    if no_extension or current_file_extension in extensions or not_saved or all_files
       view.css("display", "inline-block")
     else
       view.css("display", "none")
