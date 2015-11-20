@@ -14,8 +14,8 @@ class WordcountView extends View
 
   update_count: (editor) ->
     text = @getCurrentText editor
-    [wordCount, charCount] = @count text
-    @divWords.innerHTML = "#{wordCount || 0} W | #{charCount || 0} C"
+    [wordCount, charCount, timeToReadCount] = @count text
+    @divWords.innerHTML = "#{wordCount || 0} W | #{charCount || 0} C | #{Math.round(timeToReadCount,1) || 0} M"
     if goal = atom.config.get 'wordcount.goal'
       if not @divGoal
         @divGoal = document.createElement 'div'
@@ -45,5 +45,6 @@ class WordcountView extends View
       for pattern in codePatterns
         text = text?.replace pattern, ''
     words = text?.match(/\S+/g)?.length
+    timeToRead = text?.match(/\S+/g)?.length/275
     chars = text?.length
-    [words, chars]
+    [words, chars, timeToRead]
