@@ -1,4 +1,6 @@
 WordcountView = require './wordcount-view'
+_ = require 'lodash'
+
 view = null
 tile = null
 
@@ -50,8 +52,11 @@ module.exports =
   activate: (state) ->
     view = new WordcountView()
     atom.workspace.observeTextEditors (editor) ->
-      editor.onDidChange -> view.update_count editor
-      editor.onDidChangeSelectionRange -> view.update_count editor
+      update_count = _.throttle ->
+        view.update_count(editor)
+      , 300
+      editor.onDidChange update_count
+      editor.onDidChangeSelectionRange update_count
 
     atom.workspace.onDidChangeActivePaneItem @show_or_hide_for_item
 
