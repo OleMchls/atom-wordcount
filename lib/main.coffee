@@ -80,7 +80,8 @@ module.exports =
     not_saved = not item?.buffer?.file?
     no_extension = atom.config.get('wordcount.noextension') && item?.buffer?.file?.path.split('.').length == 1
     current_file_extension = item?.buffer?.file?.path.split('.').pop().toLowerCase()
-    if alwaysOn or no_extension or current_file_extension in extensions or not_saved
+    is_buffer = atom.workspace.getActivePaneItem()?.buffer?  # only show word count if a buffer is currently active
+    if is_buffer and (alwaysOn or no_extension or current_file_extension in extensions or not_saved)
       view.css("display", "inline-block")
     else
       view.css("display", "none")
