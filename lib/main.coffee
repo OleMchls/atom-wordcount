@@ -54,6 +54,14 @@ module.exports =
       items:
         type: 'boolean'
       order: 7
+    hidechars:
+      title: 'Hide character count'
+      description: 'Hides the character count from the view'
+      type: 'boolean'
+      default: 'false'
+      items:
+        type: 'boolean'
+      order: 8
 
   activate: (state) ->
     view = new WordcountView()

@@ -15,7 +15,10 @@ class WordcountView extends View
   update_count: (editor) ->
     text = @getCurrentText editor
     [wordCount, charCount] = @count text
-    @divWords.innerHTML = "#{wordCount || 0} W | #{charCount || 0} C"
+    if atom.config.get('wordcount.hidechars')
+      @divWords.innerHTML = "#{wordCount || 0} W"
+    else
+      @divWords.innerHTML = "#{wordCount || 0} W | #{charCount || 0} C"
     if goal = atom.config.get 'wordcount.goal'
       if not @divGoal
         @divGoal = document.createElement 'div'
