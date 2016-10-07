@@ -58,9 +58,7 @@ module.exports =
       title: 'Hide character count'
       description: 'Hides the character count from the view'
       type: 'boolean'
-      default: 'false'
-      items:
-        type: 'boolean'
+      default: false
       order: 8
 
   activate: (state) ->
