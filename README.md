@@ -8,6 +8,7 @@ Counts the words and characters in your current document and displays them in th
   - Works with unsaved files
   - Option to exclude `codeblocks` from count
 
+
 ![A screenshot of your spankin' package](https://f.cloud.github.com/assets/584259/2417048/20cf8554-ab14-11e3-9a9b-e29bde602654.gif)
 
 *A special thanks goes to our [awesome contributors](https://github.com/nesQuick/atom-wordcount/graphs/contributors) 👏*
