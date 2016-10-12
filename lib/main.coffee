@@ -78,7 +78,7 @@ module.exports =
 
   update_goal: (item) ->
     if item is 0
-      view.css('background', 'transparent')
+      view.element.style.background = 'transparent'
 
   show_or_hide_for_item: (item) ->
     {alwaysOn, extensions, noextension} = atom.config.get('wordcount')
@@ -95,10 +95,10 @@ module.exports =
     if alwaysOn or no_extension or current_file_extension in extensions
       view.css("display", "inline-block") unless not_text_editor
     else
-      view.css("display", "none")
+      view.element.style.display = "none"
 
   consumeStatusBar: (statusBar) ->
-    tile = statusBar.addRightTile(item: view, priority: 100)
+    tile = statusBar.addRightTile(item: view.element, priority: 100)
 
   deactivate: ->
     tile?.destroy()
