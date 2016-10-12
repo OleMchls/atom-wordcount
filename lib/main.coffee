@@ -93,7 +93,7 @@ module.exports =
       no_extension = true
 
     if alwaysOn or no_extension or current_file_extension in extensions
-      view.css("display", "inline-block") unless not_text_editor
+      view.element.style.display = "inline-block" unless not_text_editor
     else
       view.element.style.display = "none"
 
