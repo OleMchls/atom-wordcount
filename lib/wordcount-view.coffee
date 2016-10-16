@@ -1,16 +1,17 @@
-{View} = require 'atom-space-pen-views'
 
 module.exports =
-class WordcountView extends View
+class WordcountView
   CSS_SELECTED_CLASS: 'wordcount-select'
 
   constructor: ->
-    super
-    @divWords = document.createElement 'div'
-    @append @divWords
+    @element = document.createElement 'div'
+    @element.classList.add('word-count')
+    @element.classList.add('inline-block')
 
-  @content: ->
-    @div class: 'word-count inline-block'
+    @divWords = document.createElement 'div'
+
+    @element.appendChild(@divWords)
+
 
   update_count: (editor) ->
     text = @getCurrentText editor
@@ -21,22 +22,22 @@ class WordcountView extends View
       if not @divGoal
         @divGoal = document.createElement 'div'
         @divGoal.style.width = '100%'
-        @append @divGoal
+        @element.appendChild @divGoal
       green = Math.round(wordCount / goal * 100)
       green = 100 if green > 100
       color = atom.config.get 'wordcount.goalColor'
       @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, transparent 0%)'
       percent = parseFloat(atom.config.get 'wordcount.goalLineHeight') / 100
-      height = @height() * percent;
+      height = @element.style.height * percent
       @divGoal.style.height = height + 'px'
       @divGoal.style.marginTop = -height + 'px'
 
   getCurrentText: (editor) =>
     selection = editor.getSelectedText()
     if selection
-      @addClass @CSS_SELECTED_CLASS
+      @element.classList.add @CSS_SELECTED_CLASS
     else
-      @removeClass @CSS_SELECTED_CLASS
+      @element.classList.remove @CSS_SELECTED_CLASS
     text = editor.getText()
     selection || text
 
