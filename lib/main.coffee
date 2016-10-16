@@ -89,8 +89,7 @@ module.exports =
     untitled_tab = buffer?.file is null
     current_file_extension = buffer?.file?.path.match(/\.(\w+)$/)?[1].toLowerCase()
 
-    if noextension and (not current_file_extension? or untitled_tab)
-      no_extension = true
+    no_extension = noextension and (not current_file_extension? or untitled_tab)
 
     if alwaysOn or no_extension or current_file_extension in extensions
       view.element.style.display = "inline-block" unless not_text_editor
