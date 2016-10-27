@@ -7,6 +7,7 @@ Counts the words and characters in your current document and displays them in th
   - Writing goal tracker (with custom colors support)
   - Works with unsaved files
   - Option to exclude `codeblocks` from count
+  - Option to show the total price per word for the document. Currency symbol can be changed in Settings.
 
 
 ![A screenshot of your spankin' package](https://cloud.githubusercontent.com/assets/584259/19187373/62f97ad8-8c8b-11e6-85aa-1282f94f509b.gif))
