@@ -18,6 +18,8 @@ class WordcountView
     [wordCount, charCount] = @count text
     @divWords.innerHTML = "#{wordCount || 0} W"
     @divWords.innerHTML += (" | #{charCount || 0} C") unless atom.config.get('wordcount.hidechars')
+    priceResult = wordCount*atom.config.get('wordcount.wordprice')
+    @divWords.innerHTML += (" | #{priceResult.toFixed(2) || 0} ")+atom.config.get('wordcount.currencysymbol') if atom.config.get('wordcount.showprice')
     if goal = atom.config.get 'wordcount.goal'
       if not @divGoal
         @divGoal = document.createElement 'div'
