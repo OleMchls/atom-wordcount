@@ -76,7 +76,7 @@ module.exports =
       title: 'Set a different currency symbol'
       description: 'Allows you to change the currency you get paid with'
       type: 'string'
-      default: '₴'
+      default: '$'
       order: 11
 
   activate: (state) ->
