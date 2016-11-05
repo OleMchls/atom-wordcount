@@ -60,6 +60,24 @@ module.exports =
       type: 'boolean'
       default: false
       order: 8
+    showprice:
+      title: 'Do you get paid per word?'
+      description: 'Shows the price for the text per word'
+      type: 'boolean'
+      default: false
+      order: 9
+    wordprice:
+      title: 'How much do you get paid per word?'
+      description: 'Allows you to find out how much do you get paid per word'
+      type: 'string'
+      default: '0.15'
+      order: 10
+    currencysymbol:
+      title: 'Set a different currency symbol'
+      description: 'Allows you to change the currency you get paid with'
+      type: 'string'
+      default: '$'
+      order: 11
 
   activate: (state) ->
     view = new WordcountView()
