@@ -3,6 +3,7 @@ _ = require 'lodash'
 
 view = null
 tile = null
+visible = false
 
 module.exports =
 
@@ -83,7 +84,7 @@ module.exports =
     view = new WordcountView()
     atom.workspace.observeTextEditors (editor) ->
       update_count = _.throttle ->
-        view.update_count(editor)
+        visible && view.update_count(editor)
       , 300
       editor.onDidChange update_count
       editor.onDidChangeSelectionRange update_count
@@ -110,8 +111,10 @@ module.exports =
     no_extension = noextension and (not current_file_extension? or untitled_tab)
 
     if alwaysOn or no_extension or current_file_extension in extensions
+      visible = true
       view.element.style.display = "inline-block" unless not_text_editor
     else
+      visible = false
       view.element.style.display = "none"
 
   consumeStatusBar: (statusBar) ->
