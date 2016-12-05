@@ -14,8 +14,12 @@ class WordcountView
 
 
   update_count: (editor) ->
-    text = @getCurrentText editor
-    [wordCount, charCount] = @count text
+    texts = @getTexts editor
+    wordCount = charCount = 0
+    for text in texts
+      [words, chars] = @count text
+      wordCount += words
+      charCount += chars
     @divWords.innerHTML = "#{wordCount || 0} W"
     @divWords.innerHTML += (" | #{charCount || 0} C") unless atom.config.get('wordcount.hidechars')
     priceResult = wordCount*atom.config.get('wordcount.wordprice')
@@ -34,14 +38,27 @@ class WordcountView
       @divGoal.style.height = height + 'px'
       @divGoal.style.marginTop = -height + 'px'
 
-  getCurrentText: (editor) =>
-    selection = editor.getSelectedText()
-    if selection
-      @element.classList.add @CSS_SELECTED_CLASS
-    else
+  getTexts: (editor) =>
+    # NOTE: A cursor is considered an empty selection to the editor
+    texts = []
+    selectionRanges = editor.getSelectedBufferRanges()
+    emptySelections = true
+    for range in selectionRanges
+      text = editor.getTextInBufferRange(range)
+
+      # Text from buffer might be empty (no selection but a cursor)
+      if text
+        texts.push(text)
+        emptySelections = false
+
+    # No or only empty selections will cause the entire editor text to be returned instead
+    if emptySelections
+      texts.push(editor.getText())
       @element.classList.remove @CSS_SELECTED_CLASS
-    text = editor.getText()
-    selection || text
+    else
+      @element.classList.add @CSS_SELECTED_CLASS
+
+    texts
 
   count: (text) ->
     if atom.config.get('wordcount.ignorecode')
