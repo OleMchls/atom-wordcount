@@ -3,7 +3,6 @@ _ = require 'lodash'
 
 view = null
 tile = null
-visible = false
 
 module.exports =
 
@@ -81,17 +80,31 @@ module.exports =
       order: 11
 
   activate: (state) ->
+    @visible = false
     view = new WordcountView()
+
+    # Updates only the count of the s
+    update_count = _.throttle (editor) =>
+      @visible && view.update_count(editor)
+    , 300
+
+    # Update count when content of buffer or selections change
     atom.workspace.observeTextEditors (editor) ->
-      update_count = _.throttle ->
-        visible && view.update_count(editor)
-      , 300
-      editor.onDidChange update_count
-      editor.onDidChangeSelectionRange update_count
+      editor.onDidChange -> update_count editor
 
-    atom.workspace.onDidChangeActivePaneItem @show_or_hide_for_item
+      # NOTE: This triggers before a didChangeActivePane, so the counts might be calculated once on pane switch
+      editor.onDidChangeSelectionRange -> update_count editor
 
-    @show_or_hide_for_item atom.workspace.getActivePaneItem()
+    # Updates the visibility and count of the view
+    update_view_and_count = (item) =>
+      @show_or_hide_for_item item
+      update_count atom.workspace.getActiveTextEditor()
+
+    # Update whenever active item changes
+    atom.workspace.onDidChangeActivePaneItem update_view_and_count
+
+    # Initial update
+    update_view_and_count atom.workspace.getActivePaneItem()
 
     atom.config.observe('wordcount.goal', @update_goal)
 
@@ -111,10 +124,10 @@ module.exports =
     no_extension = noextension and (not current_file_extension? or untitled_tab)
 
     if alwaysOn or no_extension or current_file_extension in extensions
-      visible = true
+      @visible = true
       view.element.style.display = "inline-block" unless not_text_editor
     else
-      visible = false
+      @visible = false
       view.element.style.display = "none"
 
   consumeStatusBar: (statusBar) ->
