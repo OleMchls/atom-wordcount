@@ -98,7 +98,8 @@ module.exports =
     # Updates the visibility and count of the view
     update_view_and_count = (item) =>
       @show_or_hide_for_item item
-      update_count atom.workspace.getActiveTextEditor()
+      editor = atom.workspace.getActiveTextEditor()
+      update_count editor if editor?
 
     # Update whenever active item changes
     atom.workspace.onDidChangeActivePaneItem update_view_and_count
