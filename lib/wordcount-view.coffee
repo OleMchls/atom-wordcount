@@ -34,7 +34,7 @@ class WordcountView
       color = atom.config.get 'wordcount.goalColor'
       @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, transparent 0%)'
       percent = parseFloat(atom.config.get 'wordcount.goalLineHeight') / 100
-      height = @element.style.height * percent
+      height = @element.clientHeight * percent
       @divGoal.style.height = height + 'px'
       @divGoal.style.marginTop = -height + 'px'
 
