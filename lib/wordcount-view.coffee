@@ -66,8 +66,7 @@ class WordcountView
       for pattern in codePatterns
         text = text?.replace pattern, ''
     words = text?.match(/\S+/g)?.length
-    if atom.config.get('wordcount.ignorenewline')
-      text = text?.replace '\n', ''
-      text = text?.replace '\r', ''
+    text = text?.replace '\n', ''
+    text = text?.replace '\r', ''
     chars = text?.length
     [words, chars]
