@@ -78,7 +78,7 @@ module.exports =
       type: 'string'
       default: '$'
       order: 11
-    newline:
+    ignorenewline:
       title: 'Ignore newline characters'
       description: 'Do not count the newline characters'
       type: 'boolean'
