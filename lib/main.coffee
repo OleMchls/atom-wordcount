@@ -78,6 +78,12 @@ module.exports =
       type: 'string'
       default: '$'
       order: 11
+    newline:
+      title: 'Ignore newline characters'
+      description: 'Do not count the newline characters'
+      type: 'boolean'
+      default: false
+      order: 12
 
   activate: (state) ->
     @visible = false
