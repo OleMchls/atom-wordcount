@@ -6,7 +6,9 @@ Counts the words and characters in your current document and displays them in th
   - Counts the words and characters in your selection when you have made one (or multiple!)
   - Writing goal tracker (with custom colors support)
   - Works with unsaved files
-  - Option to exclude `codeblocks` from count
+  - Option to exclude markdown `codeblocks` from count
+  - Option to exclude markdown `<!-- html comments -->` and `{>> critic markup comments <<}` from count
+  - Option to exclude markdown `> blockquotes` from count
   - Option to show the total price per word for the document. Currency symbol can be changed in Settings.
 
 

@@ -65,6 +65,14 @@ class WordcountView
       codePatterns = [/`{3}(.|\s)*?(`{3}|$)/g, /[ ]{4}.*?$/gm]
       for pattern in codePatterns
         text = text?.replace pattern, ''
+    if atom.config.get('wordcount.ignorecomments')
+      commentPatterns = [/(<!--(\n?(?:(?!-->).)*)+-->)/g, /({>>(\n?(?:(?!<<}).)*)+<<})/g]
+      for pattern in commentPatterns
+        text = text?.replace pattern, ''
+    if atom.config.get('wordcount.ignoreblockquotes')
+      blockquotePatterns = [/^\s{0,3}>(.*\S.*\n)+/gm]
+      for pattern in blockquotePatterns
+        text = text?.replace pattern, ''
     words = text?.match(/\S+/g)?.length
     text = text?.replace '\n', ''
     text = text?.replace '\r', ''

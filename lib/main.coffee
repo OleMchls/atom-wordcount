@@ -54,30 +54,46 @@ module.exports =
       items:
         type: 'boolean'
       order: 7
+    ignorecomments:
+      title: 'Ignore Markdown comments'
+      description: 'Do not count words inside of comments'
+      type: 'boolean'
+      default: false
+      items:
+        type: 'boolean'
+      order: 8
+    ignoreblockquotes:
+      title: 'Ignore Markdown block quotes'
+      description: 'Do not count words inside of block quotes'
+      type: 'boolean'
+      default: false
+      items:
+        type: 'boolean'
+      order: 9
     hidechars:
       title: 'Hide character count'
       description: 'Hides the character count from the view'
       type: 'boolean'
       default: false
-      order: 8
+      order: 10
     showprice:
       title: 'Do you get paid per word?'
       description: 'Shows the price for the text per word'
       type: 'boolean'
       default: false
-      order: 9
+      order: 11
     wordprice:
       title: 'How much do you get paid per word?'
       description: 'Allows you to find out how much do you get paid per word'
       type: 'string'
       default: '0.15'
-      order: 10
+      order: 12
     currencysymbol:
       title: 'Set a different currency symbol'
       description: 'Allows you to change the currency you get paid with'
       type: 'string'
       default: '$'
-      order: 11
+      order: 13
 
   activate: (state) ->
     @visible = false
