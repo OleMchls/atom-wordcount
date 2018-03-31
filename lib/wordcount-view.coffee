@@ -66,7 +66,7 @@ class WordcountView
       for pattern in codePatterns
         text = text?.replace pattern, ''
     if atom.config.get('wordcount.ignorecomments')
-      commentPatterns = [/(<!--(\n?(?:(?!-->).)*)+-->)/g, /({>>(\n?(?:(?!<<}).)*)+<<})/g]
+      commentPatterns = [/(<!--(\n?(?:(?!-->).)*)+(-->|$))/g, /({>>(\n?(?:(?!<<}).)*)+(<<}|$))/g]
       for pattern in commentPatterns
         text = text?.replace pattern, ''
     if atom.config.get('wordcount.ignoreblockquotes')
