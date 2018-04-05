@@ -46,6 +46,15 @@ module.exports =
       type: 'string'
       default: '20%'
       order: 6
+    stripgrammars:
+      title: 'Grammars for ignoring'
+      description: 'Defines in which grammars specific parts of text are ignored'
+      type: 'array'
+      default: [
+        'source.gfm'
+        'text.md'
+        ]
+      order: 7
     ignorecode:
       title: 'Ignore Markdown code blocks'
       description: 'Do not count words inside of code blocks'
@@ -53,7 +62,7 @@ module.exports =
       default: false
       items:
         type: 'boolean'
-      order: 7
+      order: 8
     ignorecomments:
       title: 'Ignore Markdown comments'
       description: 'Do not count words inside of comments'
@@ -61,7 +70,7 @@ module.exports =
       default: false
       items:
         type: 'boolean'
-      order: 8
+      order: 9
     ignoreblockquotes:
       title: 'Ignore Markdown block quotes'
       description: 'Do not count words inside of block quotes'
@@ -69,31 +78,31 @@ module.exports =
       default: false
       items:
         type: 'boolean'
-      order: 9
+      order: 10
     hidechars:
       title: 'Hide character count'
       description: 'Hides the character count from the view'
       type: 'boolean'
       default: false
-      order: 10
+      order: 11
     showprice:
       title: 'Do you get paid per word?'
       description: 'Shows the price for the text per word'
       type: 'boolean'
       default: false
-      order: 11
+      order: 12
     wordprice:
       title: 'How much do you get paid per word?'
       description: 'Allows you to find out how much do you get paid per word'
       type: 'string'
       default: '0.15'
-      order: 12
+      order: 13
     currencysymbol:
       title: 'Set a different currency symbol'
       description: 'Allows you to change the currency you get paid with'
       type: 'string'
       default: '$'
-      order: 13
+      order: 14
 
   activate: (state) ->
     @visible = false
