@@ -1,6 +1,7 @@
 
 module.exports =
 class WordcountView
+  var wordregex = require('word-regex')();
   CSS_SELECTED_CLASS: 'wordcount-select'
 
   constructor: ->
@@ -65,7 +66,7 @@ class WordcountView
       codePatterns = [/`{3}(.|\s)*?(`{3}|$)/g, /[ ]{4}.*?$/gm]
       for pattern in codePatterns
         text = text?.replace pattern, ''
-    words = text?.match(/\S+/g)?.length
+    words = wordregex.match(text)?.length
     text = text?.replace '\n', ''
     text = text?.replace '\r', ''
     chars = text?.length
