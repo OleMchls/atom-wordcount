@@ -15,7 +15,7 @@ class WordcountView
   charactersToHMS: (c) ->
     # 1- Convert to seconds:
     temp = c * 60
-    seconds = temp / 1000
+    seconds = temp / 1300
     # 2- Extract hours:
     #var hours = parseInt( seconds / 3600 ); // 3,600 seconds in 1 hour
     seconds = seconds % 3600
@@ -38,7 +38,7 @@ class WordcountView
       charCount += chars
     @divWords.innerHTML = "#{wordCount || 0} W"
     @divWords.innerHTML += (" | #{charCount || 0} C") unless atom.config.get('wordcount.hidechars')
-    @divWords.innerHTML += (" | #{ @charactersToHMS charCount || 0} S")
+    @divWords.innerHTML += (" | <span>#{ @charactersToHMS charCount || 0}</span>")
     priceResult = wordCount*atom.config.get('wordcount.wordprice')
     @divWords.innerHTML += (" | #{priceResult.toFixed(2) || 0} ")+atom.config.get('wordcount.currencysymbol') if atom.config.get('wordcount.showprice')
     if goal = atom.config.get 'wordcount.goal'
@@ -49,7 +49,7 @@ class WordcountView
       green = Math.round(wordCount / goal * 100)
       green = 100 if green > 100
       color = atom.config.get 'wordcount.goalColor'
-      @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, transparent 0%)'
+      @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, red 0%)'
       percent = parseFloat(atom.config.get 'wordcount.goalLineHeight') / 100
       height = @element.clientHeight * percent
       @divGoal.style.height = height + 'px'
