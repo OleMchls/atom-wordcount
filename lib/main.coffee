@@ -78,6 +78,12 @@ module.exports =
       type: 'string'
       default: '$'
       order: 11
+    charactersPerSeconds:
+      title: 'Character per Seconds'
+      description: 'This helps you estimating the duration of your text for reading.'
+      type: 'number'
+      default: 1300
+      order: 11
 
   activate: (state) ->
     @visible = false
