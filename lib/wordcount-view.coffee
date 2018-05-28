@@ -12,9 +12,12 @@ class WordcountView
 
     @element.appendChild(@divWords)
 
+    @wordregex = require('word-regex')()
+
 
   update_count: (editor) ->
     texts = @getTexts editor
+    scope = editor.getGrammar().scopeName
     wordCount = charCount = 0
     for text in texts
       text = @stripText text, editor
@@ -82,10 +85,13 @@ class WordcountView
         for pattern in blockquotePatterns
           text = text?.replace pattern, ''
 
+      # Reduce links to text
+      text = text?.replace /(?:__|[*#])|\[(.*?)\]\(.*?\)/gm, '$1'
+
     text
 
   count: (text) ->
-    words = text?.match(/\S+/g)?.length
+    words = text?.match(@wordregex)?.length
     text = text?.replace '\n', ''
     text = text?.replace '\r', ''
     chars = text?.length
