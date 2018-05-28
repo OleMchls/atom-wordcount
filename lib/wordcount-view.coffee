@@ -20,7 +20,8 @@ class WordcountView
     scope = editor.getGrammar().scopeName
     wordCount = charCount = 0
     for text in texts
-      [words, chars] = @count text, scope
+      text = @stripText text, editor
+      [words, chars] = @count text
       wordCount += words
       charCount += chars
     @divWords.innerHTML = "#{wordCount || 0} W"
@@ -63,15 +64,33 @@ class WordcountView
 
     texts
 
-  count: (text, scope) ->
-    if atom.config.get('wordcount.ignorecode')
-      codePatterns = [/`{3}(.|\s)*?(`{3}|$)/g, /[ ]{4}.*?$/gm]
-      for pattern in codePatterns
-        text = text?.replace pattern, ''
-    if (scope == 'source.gfm')
+  stripText: (text, editor) ->
+    grammar = editor.getGrammar().scopeName
+    stripgrammars = atom.config.get('wordcount.stripgrammars')
+
+    if grammar in stripgrammars
+
+      if atom.config.get('wordcount.ignorecode')
+        codePatterns = [/`{3}(.|\s)*?(`{3}|$)/g, /[ ]{4}.*?$/gm]
+        for pattern in codePatterns
+          text = text?.replace pattern, ''
+
+      if atom.config.get('wordcount.ignorecomments')
+        commentPatterns = [/(<!--(\n?(?:(?!-->).)*)+(-->|$))/g, /({>>(\n?(?:(?!<<}).)*)+(<<}|$))/g]
+        for pattern in commentPatterns
+          text = text?.replace pattern, ''
+
+      if atom.config.get('wordcount.ignoreblockquotes')
+        blockquotePatterns = [/^\s{0,3}>(.*\S.*\n)+/gm]
+        for pattern in blockquotePatterns
+          text = text?.replace pattern, ''
+
       # Reduce links to text
       text = text?.replace /(?:__|[*#])|\[(.*?)\]\(.*?\)/gm, '$1'
-    console.log(text?.match(@wordregex))
+
+    text
+
+  count: (text) ->
     words = text?.match(@wordregex)?.length
     text = text?.replace '\n', ''
     text = text?.replace '\r', ''
