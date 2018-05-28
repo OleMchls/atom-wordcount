@@ -17,6 +17,7 @@ class WordcountView
     texts = @getTexts editor
     wordCount = charCount = 0
     for text in texts
+      text = @stripText text, editor
       [words, chars] = @count text
       wordCount += words
       charCount += chars
@@ -60,11 +61,30 @@ class WordcountView
 
     texts
 
+  stripText: (text, editor) ->
+    grammar = editor.getGrammar().scopeName
+    stripgrammars = atom.config.get('wordcount.stripgrammars')
+
+    if grammar in stripgrammars
+
+      if atom.config.get('wordcount.ignorecode')
+        codePatterns = [/`{3}(.|\s)*?(`{3}|$)/g, /[ ]{4}.*?$/gm]
+        for pattern in codePatterns
+          text = text?.replace pattern, ''
+
+      if atom.config.get('wordcount.ignorecomments')
+        commentPatterns = [/(<!--(\n?(?:(?!-->).)*)+(-->|$))/g, /({>>(\n?(?:(?!<<}).)*)+(<<}|$))/g]
+        for pattern in commentPatterns
+          text = text?.replace pattern, ''
+
+      if atom.config.get('wordcount.ignoreblockquotes')
+        blockquotePatterns = [/^\s{0,3}>(.*\S.*\n)+/gm]
+        for pattern in blockquotePatterns
+          text = text?.replace pattern, ''
+
+    text
+
   count: (text) ->
-    if atom.config.get('wordcount.ignorecode')
-      codePatterns = [/`{3}(.|\s)*?(`{3}|$)/g, /[ ]{4}.*?$/gm]
-      for pattern in codePatterns
-        text = text?.replace pattern, ''
     words = text?.match(/\S+/g)?.length
     text = text?.replace '\n', ''
     text = text?.replace '\r', ''
