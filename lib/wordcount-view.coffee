@@ -12,7 +12,7 @@ class WordcountView
 
     @element.appendChild(@divWords)
 
-  charactersToMS: (c) ->
+  charactersToHMS: (c) ->
     # 1- Convert to seconds:
     temp = c * 60
     seconds = temp / atom.config.get('wordcount.charactersPerSeconds')
@@ -36,11 +36,13 @@ class WordcountView
       [words, chars] = @count text
       wordCount += words
       charCount += chars
-    @divWords.innerHTML = "#{wordCount || 0} W"
-    @divWords.innerHTML += (" | #{charCount || 0} C") unless atom.config.get('wordcount.hidechars')
-    @divWords.innerHTML += (" | <span>#{ @charactersToMS charCount || 0}</span>")
-    priceResult = wordCount*atom.config.get('wordcount.wordprice')
-    @divWords.innerHTML += (" | #{priceResult.toFixed(2) || 0} ")+atom.config.get('wordcount.currencysymbol') if atom.config.get('wordcount.showprice')
+    str = ''
+    str += "<span class='wordcount-words'>#{wordCount || 0} W</span>" if atom.config.get 'wordcount.showwords'
+    str += ("<span class='wordcount-chars'>#{charCount || 0} C</span>") if atom.config.get 'wordcount.showchars'
+    str += ("<span class='wordcount-time'>#{ @charactersToHMS charCount || 0}</span>") if atom.config.get 'wordcount.showtime'
+    priceResult = wordCount*atom.config.get 'wordcount.wordprice'
+    str += ("<span class='wordcount-price'>#{priceResult.toFixed(2) || 0} </span>") + atom.config.get 'wordcount.currencysymbol' if atom.config.get 'wordcount.showprice'
+    @divWords.innerHTML = str
     if goal = atom.config.get 'wordcount.goal'
       if not @divGoal
         @divGoal = document.createElement 'div'
@@ -49,7 +51,8 @@ class WordcountView
       green = Math.round(wordCount / goal * 100)
       green = 100 if green > 100
       color = atom.config.get 'wordcount.goalColor'
-      @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, red 0%)'
+      colorBg = atom.config.get 'wordcount.goalBgColor'
+      @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, ' + colorBg + ' 0%)'
       percent = parseFloat(atom.config.get 'wordcount.goalLineHeight') / 100
       height = @element.clientHeight * percent
       @divGoal.style.height = height + 'px'

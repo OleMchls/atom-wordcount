@@ -37,53 +37,67 @@ module.exports =
       order: 4
     goalColor:
       title: 'Color for word goal'
-      description: 'Use a CSS color value, such as rgb(0, 85, 255) or green'
-      type: 'string'
+      type: 'color'
       default: 'rgb(0, 85, 0)'
       order: 5
+    goalBgColor:
+      title: 'Color for word goal background'
+      type: 'color'
+      default: 'red'
+      order: 6
     goalLineHeight:
       title: 'Percentage height of word goal line'
       type: 'string'
       default: '20%'
-      order: 6
+      order: 7
     ignorecode:
       title: 'Ignore Markdown code blocks'
       description: 'Do not count words inside of code blocks'
       type: 'boolean'
       default: false
-      items:
-        type: 'boolean'
-      order: 7
-    hidechars:
-      title: 'Hide character count'
-      description: 'Hides the character count from the view'
-      type: 'boolean'
-      default: false
       order: 8
-    showprice:
-      title: 'Do you get paid per word?'
-      description: 'Shows the price for the text per word'
+    showchars:
+      title: 'Show character count'
+      description: 'Shows the character count from the view'
+      type: 'boolean'
+      default: true
+      order: 9
+    showwords:
+      title: 'Show word count'
+      description: 'Shows the word count from the view'
+      type: 'boolean'
+      default: true
+      order: 10
+    showtime:
+      title: 'Show time Estimation'
+      description: 'Shows the time estimation from the view'
       type: 'boolean'
       default: false
-      order: 9
-    wordprice:
-      title: 'How much do you get paid per word?'
-      description: 'Allows you to find out how much do you get paid per word'
-      type: 'string'
-      default: '0.15'
-      order: 10
-    currencysymbol:
-      title: 'Set a different currency symbol'
-      description: 'Allows you to change the currency you get paid with'
-      type: 'string'
-      default: '$'
       order: 11
     charactersPerSeconds:
       title: 'Character per Seconds'
       description: 'This helps you estimating the duration of your text for reading.'
       type: 'number'
       default: 1300
-      order: 11
+      order: 12
+    showprice:
+      title: 'Show price estimation'
+      description: 'Shows the price for the text per word'
+      type: 'boolean'
+      default: false
+      order: 13
+    wordprice:
+      title: 'How much do you get paid per word?'
+      description: 'Allows you to find out how much do you get paid per word'
+      type: 'string'
+      default: '0.15'
+      order: 14
+    currencysymbol:
+      title: 'Set a different currency symbol'
+      description: 'Allows you to change the currency you get paid with'
+      type: 'string'
+      default: '$'
+      order: 15
 
   activate: (state) ->
     @visible = false
@@ -103,7 +117,7 @@ module.exports =
 
     # Updates the visibility and count of the view
     update_view_and_count = (item) =>
-      @show_or_hide_for_item item
+      @show_or_show_for_item item
       editor = atom.workspace.getActiveTextEditor()
       update_count editor if editor?
 
@@ -119,7 +133,7 @@ module.exports =
     if item is 0
       view.element.style.background = 'transparent'
 
-  show_or_hide_for_item: (item) ->
+  show_or_show_for_item: (item) ->
     {alwaysOn, extensions, noextension} = atom.config.get('wordcount')
     extensions = (extensions || []).map (extension) -> extension.toLowerCase()
     buffer = item?.buffer
