@@ -49,6 +49,15 @@ module.exports =
       title: 'Percentage height of word goal line'
       type: 'string'
       default: '20%'
+      order: 6
+    stripgrammars:
+      title: 'Grammars for ignoring'
+      description: 'Defines in which grammars specific parts of text are ignored'
+      type: 'array'
+      default: [
+        'source.gfm'
+        'text.md'
+        ]
       order: 7
     ignorecode:
       title: 'Ignore Markdown code blocks'
@@ -56,48 +65,63 @@ module.exports =
       type: 'boolean'
       default: false
       order: 8
+    ignorecomments:
+      title: 'Ignore Markdown comments'
+      description: 'Do not count words inside of comments'
+      type: 'boolean'
+      default: false
+      items:
+        type: 'boolean'
+      order: 9
+    ignoreblockquotes:
+      title: 'Ignore Markdown block quotes'
+      description: 'Do not count words inside of block quotes'
+      type: 'boolean'
+      default: false
+      items:
+        type: 'boolean'
+      order: 10
     showchars:
       title: 'Show character count'
       description: 'Shows the character count from the view'
       type: 'boolean'
       default: true
-      order: 9
     showwords:
       title: 'Show word count'
       description: 'Shows the word count from the view'
       type: 'boolean'
       default: true
-      order: 10
+      order: 11
     showtime:
       title: 'Show time estimation'
       description: 'Shows the time estimation from the view'
       type: 'boolean'
       default: false
-      order: 11
+      order: 12
     charactersPerSeconds:
       title: 'Character per seconds'
       description: 'This helps you estimating the duration of your text for reading.'
       type: 'number'
       default: 1300
-      order: 12
+      order: 13
     showprice:
       title: 'Show price estimation'
       description: 'Shows the price for the text per word'
       type: 'boolean'
       default: false
-      order: 13
+      order: 14
     wordprice:
       title: 'How much do you get paid per word?'
       description: 'Allows you to find out how much do you get paid per word'
       type: 'string'
       default: '0.15'
-      order: 14
+      order: 15
     currencysymbol:
       title: 'Set a different currency symbol'
       description: 'Allows you to change the currency you get paid with'
       type: 'string'
       default: '$'
-      order: 15
+      order: 16
 
   activate: (state) ->
     @visible = false
