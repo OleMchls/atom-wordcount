@@ -86,42 +86,43 @@ module.exports =
       description: 'Shows the character count from the view'
       type: 'boolean'
       default: true
+      order: 11
     showwords:
       title: 'Show word count'
       description: 'Shows the word count from the view'
       type: 'boolean'
       default: true
-      order: 11
+      order: 12
     showtime:
       title: 'Show time estimation'
       description: 'Shows the time estimation from the view'
       type: 'boolean'
       default: false
-      order: 12
+      order: 13
     charactersPerSeconds:
       title: 'Character per seconds'
       description: 'This helps you estimating the duration of your text for reading.'
       type: 'number'
-      default: 1300
-      order: 13
+      default: 1000
+      order: 14
     showprice:
       title: 'Show price estimation'
       description: 'Shows the price for the text per word'
       type: 'boolean'
       default: false
-      order: 14
+      order: 15
     wordprice:
       title: 'How much do you get paid per word?'
       description: 'Allows you to find out how much do you get paid per word'
       type: 'string'
       default: '0.15'
-      order: 15
+      order: 16
     currencysymbol:
       title: 'Set a different currency symbol'
       description: 'Allows you to change the currency you get paid with'
       type: 'string'
       default: '$'
-      order: 16
+      order: 17
 
   activate: (state) ->
     @visible = false
