@@ -117,7 +117,7 @@ module.exports =
 
     # Updates the visibility and count of the view
     update_view_and_count = (item) =>
-      @show_or_show_for_item item
+      @show_or_hide_for_item item
       editor = atom.workspace.getActiveTextEditor()
       update_count editor if editor?
 
@@ -133,7 +133,7 @@ module.exports =
     if item is 0
       view.element.style.background = 'transparent'
 
-  show_or_show_for_item: (item) ->
+  show_or_hide_for_item: (item) ->
     {alwaysOn, extensions, noextension} = atom.config.get('wordcount')
     extensions = (extensions || []).map (extension) -> extension.toLowerCase()
     buffer = item?.buffer
