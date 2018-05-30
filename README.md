@@ -10,6 +10,7 @@ Counts the words and characters in your current document and displays them in th
   - Option to exclude markdown `<!-- html comments -->` and `{>> critic markup comments <<}` from count
   - Option to exclude markdown `> blockquotes` from count
   - Option to show the total price per word for the document. Currency symbol can be changed in Settings.
+  - Option to display the time to read estimation based on character count
 
 
 ![A screenshot of your spankin' package](https://cloud.githubusercontent.com/assets/584259/19187373/62f97ad8-8c8b-11e6-85aa-1282f94f509b.gif)
