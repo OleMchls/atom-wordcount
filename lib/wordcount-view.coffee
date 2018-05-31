@@ -14,6 +14,22 @@ class WordcountView
 
     @wordregex = require('word-regex')()
 
+  charactersToHMS: (c) ->
+    # 1- Convert to seconds:
+    temp = c * 60
+    seconds = temp / atom.config.get('wordcount.charactersPerSeconds')
+    # 2- Extract hours:
+    #var hours = parseInt( seconds / 3600 ); // 3,600 seconds in 1 hour
+    seconds = seconds % 3600
+    # seconds remaining after extracting hours
+    # 3- Extract minutes:
+    minutes = parseInt(seconds / 60)
+    # 60 seconds in 1 minute
+    # 4- Keep only seconds not extracted to minutes:
+    seconds = Math.round(seconds % 60)
+    minutes = ('0' + minutes).slice(-2)
+    seconds = ('0' + seconds).slice(-2)
+    minutes + ':' + seconds
 
   update_count: (editor) ->
     texts = @getTexts editor
@@ -24,10 +40,13 @@ class WordcountView
       [words, chars] = @count text
       wordCount += words
       charCount += chars
-    @divWords.innerHTML = "#{wordCount || 0} W"
-    @divWords.innerHTML += (" | #{charCount || 0} C") unless atom.config.get('wordcount.hidechars')
-    priceResult = wordCount*atom.config.get('wordcount.wordprice')
-    @divWords.innerHTML += (" | #{priceResult.toFixed(2) || 0} ")+atom.config.get('wordcount.currencysymbol') if atom.config.get('wordcount.showprice')
+    str = ''
+    str += "<span class='wordcount-words'>#{wordCount || 0} W</span>" if atom.config.get 'wordcount.showwords'
+    str += ("<span class='wordcount-chars'>#{charCount || 0} C</span>") if atom.config.get 'wordcount.showchars'
+    str += ("<span class='wordcount-time'>#{ @charactersToHMS charCount || 0}</span>") if atom.config.get 'wordcount.showtime'
+    priceResult = wordCount*atom.config.get 'wordcount.wordprice'
+    str += ("<span class='wordcount-price'>#{priceResult.toFixed(2) || 0} </span>") + atom.config.get 'wordcount.currencysymbol' if atom.config.get 'wordcount.showprice'
+    @divWords.innerHTML = str
     if goal = atom.config.get 'wordcount.goal'
       if not @divGoal
         @divGoal = document.createElement 'div'
@@ -36,7 +55,8 @@ class WordcountView
       green = Math.round(wordCount / goal * 100)
       green = 100 if green > 100
       color = atom.config.get 'wordcount.goalColor'
-      @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, transparent 0%)'
+      colorBg = atom.config.get 'wordcount.goalBgColor'
+      @divGoal.style.background = '-webkit-linear-gradient(left, ' + color + ' ' + green + '%, ' + colorBg + ' 0%)'
       percent = parseFloat(atom.config.get 'wordcount.goalLineHeight') / 100
       height = @element.clientHeight * percent
       @divGoal.style.height = height + 'px'

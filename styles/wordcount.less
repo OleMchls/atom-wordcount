@@ -4,9 +4,15 @@
 // for a full listing of what's available.
 @import "ui-variables";
 
-.wordcount {
-}
-
 .wordcount-select {
   color: @text-color-highlight
+}
+
+.word-count span:nth-child(n+2):before {
+  content: " | ";
+  font-weight: normal;
+}
+
+.word-count .wordcount-time {
+  font-weight: bold
 }

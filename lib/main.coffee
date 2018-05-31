@@ -37,15 +37,19 @@ module.exports =
       order: 4
     goalColor:
       title: 'Color for word goal'
-      description: 'Use a CSS color value, such as rgb(0, 85, 255) or green'
-      type: 'string'
+      type: 'color'
       default: 'rgb(0, 85, 0)'
       order: 5
+    goalBgColor:
+      title: 'Color for word goal background'
+      type: 'color'
+      default: 'red'
+      order: 6
     goalLineHeight:
       title: 'Percentage height of word goal line'
       type: 'string'
       default: '20%'
-      order: 6
+      order: 7
     stripgrammars:
       title: 'Grammars for ignoring'
       description: 'Defines in which grammars specific parts of text are ignored'
@@ -54,15 +58,13 @@ module.exports =
         'source.gfm'
         'text.md'
         ]
-      order: 7
+      order: 8
     ignorecode:
       title: 'Ignore Markdown code blocks'
       description: 'Do not count words inside of code blocks'
       type: 'boolean'
       default: false
-      items:
-        type: 'boolean'
-      order: 8
+      order: 9
     ignorecomments:
       title: 'Ignore Markdown comments'
       description: 'Do not count words inside of comments'
@@ -70,7 +72,7 @@ module.exports =
       default: false
       items:
         type: 'boolean'
-      order: 9
+      order: 10
     ignoreblockquotes:
       title: 'Ignore Markdown block quotes'
       description: 'Do not count words inside of block quotes'
@@ -78,31 +80,49 @@ module.exports =
       default: false
       items:
         type: 'boolean'
-      order: 10
-    hidechars:
-      title: 'Hide character count'
-      description: 'Hides the character count from the view'
+      order: 11
+    showchars:
+      title: 'Show character count'
+      description: 'Shows the character count from the view'
+      type: 'boolean'
+      default: true
+      order: 12
+    showwords:
+      title: 'Show word count'
+      description: 'Shows the word count from the view'
+      type: 'boolean'
+      default: true
+      order: 13
+    showtime:
+      title: 'Show time estimation'
+      description: 'Shows the time estimation from the view'
       type: 'boolean'
       default: false
-      order: 11
+      order: 14
+    charactersPerSeconds:
+      title: 'Character per seconds'
+      description: 'This helps you estimating the duration of your text for reading.'
+      type: 'number'
+      default: 1000
+      order: 15
     showprice:
-      title: 'Do you get paid per word?'
+      title: 'Show price estimation'
       description: 'Shows the price for the text per word'
       type: 'boolean'
       default: false
-      order: 12
+      order: 16
     wordprice:
       title: 'How much do you get paid per word?'
       description: 'Allows you to find out how much do you get paid per word'
       type: 'string'
       default: '0.15'
-      order: 13
+      order: 17
     currencysymbol:
       title: 'Set a different currency symbol'
       description: 'Allows you to change the currency you get paid with'
       type: 'string'
       default: '$'
-      order: 14
+      order: 18
 
   activate: (state) ->
     @visible = false
