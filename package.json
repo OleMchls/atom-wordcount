@@ -20,8 +20,7 @@
     "atom": ">=0.180.0"
   },
   "dependencies": {
-    "lodash": "^3.10.1",
-    "word-regex": "^0.1.2"
+    "lodash": "^3.10.1"
   },
   "consumedServices": {
     "status-bar": {

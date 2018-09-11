@@ -12,7 +12,8 @@ class WordcountView
 
     @element.appendChild(@divWords)
 
-    @wordregex = require('word-regex')()
+    @wordregex = require('./wordcount-regex')();
+
 
   charactersToHMS: (c) ->
     # 1- Convert to seconds:
