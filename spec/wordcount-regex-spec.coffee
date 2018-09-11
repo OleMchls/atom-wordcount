@@ -4,9 +4,6 @@
 # or `fdescribe`). Remove the `f` to unfocus the block.
 wordRegex = require('../lib/wordcount-regex')
 
-match = (str) ->
-  str.match wordRegex()
-
 wordcount = (str) ->
   str.match(wordRegex())?.length
 
