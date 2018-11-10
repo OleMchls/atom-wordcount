@@ -100,7 +100,7 @@ module.exports =
       default: false
       order: 14
     charactersPerSeconds:
-      title: 'Character per seconds'
+      title: 'Characters per minute'
       description: 'This helps you estimating the duration of your text for reading.'
       type: 'number'
       default: 1000
