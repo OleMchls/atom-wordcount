@@ -99,11 +99,11 @@ module.exports =
       type: 'boolean'
       default: false
       order: 14
-    charactersPerSeconds:
-      title: 'Character per seconds'
+    wordsPerMinute:
+      title: 'Words per minute'
       description: 'This helps you estimating the duration of your text for reading.'
       type: 'number'
-      default: 1000
+      default: 200
       order: 15
     showprice:
       title: 'Show price estimation'
