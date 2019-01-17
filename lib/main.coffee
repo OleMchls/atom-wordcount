@@ -52,7 +52,7 @@ module.exports =
       order: 7
     stripgrammars:
       title: 'Grammars for ignoring'
-      description: 'Defines in which grammars specific parts of text are ignored'
+      description: 'Defines in which grammar specific parts of text are ignored'
       type: 'array'
       default: [
         'source.gfm'
@@ -95,7 +95,7 @@ module.exports =
       order: 13
     showtime:
       title: 'Show time estimation'
-      description: 'Shows the time estimation from the view'
+      description: 'Shows the time estimation for reading'
       type: 'boolean'
       default: false
       order: 14
@@ -113,13 +113,13 @@ module.exports =
       order: 16
     wordprice:
       title: 'How much do you get paid per word?'
-      description: 'Allows you to find out how much do you get paid per word'
+      description: 'Allows you to find out how much do you get paid for the work.'
       type: 'string'
       default: '0.15'
       order: 17
     currencysymbol:
       title: 'Set a different currency symbol'
-      description: 'Allows you to change the currency you get paid with'
+      description: 'Allows you to change the currency symbol with which you get paid.'
       type: 'string'
       default: '$'
       order: 18
