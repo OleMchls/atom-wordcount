@@ -15,19 +15,17 @@ class WordcountView
     @wordregex = require('./wordcount-regex')();
 
 
-  charactersToHMS: (c) ->
-    # 1- Convert to seconds:
-    temp = c * 60
-    seconds = temp / atom.config.get('wordcount.charactersPerSeconds')
-    # 2- Extract hours:
-    #var hours = parseInt( seconds / 3600 ); // 3,600 seconds in 1 hour
-    seconds = seconds % 3600
-    # seconds remaining after extracting hours
-    # 3- Extract minutes:
+  charactersToHMS: (words) ->
+    # 1- calculate minutes and seconds for reading
+    wpm = atom.config.get('wordcount.wordsPerMinute')
+    minutes = words / wpm
+    seconds = minutes * 60
+    # 2- recalculate minutes based on seconds
     minutes = parseInt(seconds / 60)
     # 60 seconds in 1 minute
-    # 4- Keep only seconds not extracted to minutes:
+    # 3- Calculate remainder of seconds without minutes
     seconds = Math.round(seconds % 60)
+    # 4- Return time
     minutes = ('0' + minutes).slice(-2)
     seconds = ('0' + seconds).slice(-2)
     minutes + ':' + seconds
@@ -44,7 +42,7 @@ class WordcountView
     str = ''
     str += "<span class='wordcount-words'>#{wordCount || 0} W</span>" if atom.config.get 'wordcount.showwords'
     str += ("<span class='wordcount-chars'>#{charCount || 0} C</span>") if atom.config.get 'wordcount.showchars'
-    str += ("<span class='wordcount-time'>#{ @charactersToHMS charCount || 0}</span>") if atom.config.get 'wordcount.showtime'
+    str += ("<span class='wordcount-time'>#{ @charactersToHMS wordCount || 0}</span>") if atom.config.get 'wordcount.showtime'
     priceResult = wordCount*atom.config.get 'wordcount.wordprice'
     str += ("<span class='wordcount-price'>#{priceResult.toFixed(2) || 0} </span>") + atom.config.get 'wordcount.currencysymbol' if atom.config.get 'wordcount.showprice'
     @divWords.innerHTML = str
