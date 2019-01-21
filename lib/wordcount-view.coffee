@@ -12,7 +12,7 @@ class WordcountView
 
     @element.appendChild(@divWords)
 
-    @wordregex = require('./wordcount-regex')();
+    @wordregex = require('word-regex')();
 
 
   charactersToHMS: (words) ->
