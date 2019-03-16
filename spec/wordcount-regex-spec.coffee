@@ -17,5 +17,5 @@ describe "wordcount-regex", ->
 
   describe "when the sample English text is counted", ->
     it "returns 58 words", ->
-      text = "English uses contractions, such as don't and can't. While there are no hard and fast rules, contractions are typically considered one word by native English speakers."
+      text = "English uses contractions, such as don't and canʼt. While there are no hard and fast rules, contractions are typically considered one word by native English speakers."
       expect(wordcount(text)).toBe(26)
