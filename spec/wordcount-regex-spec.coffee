@@ -29,3 +29,8 @@ describe "wordcount-regex", ->
       it "returns 19 words", ->
         text = "El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja."
         expect(wordcount(text)).toBe(19)
+
+    describe "when the sample German text is counted", ->
+      it "returns 148 words", ->
+        text = "Wenn Tina aus dem Fenster schaut, sieht sie im Garten neun Bäume. Auf einem der dünnen Äste sitzt ein Täubchen und macht lustige Geräusche. Ihr Hund sitzt nicht weit entfernt gemütlich neben seinem Häuschen und beäugt das Tier. Sein Interesse verfliegt aber schnell, als mit lautem Getöse ein Flugzeug am Himmel vorbeifliegt. Erschrocken fliegt das Täubchen auf und verschwindet im feuchten Gebüsch. Gestern hat es stark geregnet, dennoch sind am bläulichen Himmel immer noch einige Wolken zu sehen.\n\nTina schaut den Tieren gerne bei ihrer täglichen Beschäftigung zu. Einmal hat sie die Katze des Nachbarn beobachtet, wie sie über einige Zäune gesprungen ist. Als Tina ihr nachgerannt ist, hat sie sich aber bei einem Sturz eine Beule zugezogen. Trotzdem beneidet sie die Tiere um ihr unbeschwertes Leben. Denn sie muss noch ihre Hausaufgaben erledigen und dann ihr Zimmer aufräumen. Andererseits kann man das wohl auch ein Hundeleben nennen!"
+        expect(wordcount(text)).toBe(148)
