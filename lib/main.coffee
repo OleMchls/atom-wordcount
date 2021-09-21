@@ -148,6 +148,10 @@ module.exports =
 
     # Update whenever active item changes
     atom.workspace.onDidChangeActivePaneItem update_view_and_count
+    # Update whenever a new item is saved
+    atom.workspace.onDidAddTextEditor (addTextEditorEvent) =>
+      addTextEditorEvent.textEditor.onDidSave (_saveEvent) =>
+        update_view_and_count(addTextEditorEvent.pane.activeItem)
 
     # Initial update
     update_view_and_count atom.workspace.getActivePaneItem()
