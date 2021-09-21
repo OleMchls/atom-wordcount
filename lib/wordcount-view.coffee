@@ -40,8 +40,8 @@ class WordcountView
       wordCount += words
       charCount += chars
     str = ''
-    str += "<span class='wordcount-words'>#{wordCount || 0} W</span>" if atom.config.get 'wordcount.showwords'
-    str += ("<span class='wordcount-chars'>#{charCount || 0} C</span>") if atom.config.get 'wordcount.showchars'
+    str += "<span class='wordcount-words'>#{new Intl.NumberFormat().format(wordCount) || 0} W</span>" if atom.config.get 'wordcount.showwords'
+    str += ("<span class='wordcount-chars'>#{new Intl.NumberFormat().format(charCount) || 0} C</span>") if atom.config.get 'wordcount.showchars'
     str += ("<span class='wordcount-time'>#{ @charactersToHMS wordCount || 0}</span>") if atom.config.get 'wordcount.showtime'
     priceResult = wordCount*atom.config.get 'wordcount.wordprice'
     str += ("<span class='wordcount-price'>#{priceResult.toFixed(2) || 0} </span>") + atom.config.get 'wordcount.currencysymbol' if atom.config.get 'wordcount.showprice'
