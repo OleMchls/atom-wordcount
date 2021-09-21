@@ -14,7 +14,7 @@
     "bar",
     "highlight"
   ],
-  "repository": "https://github.com/nesQuick/atom-wordcount",
+  "repository": "https://github.com/OleMchls/atom-wordcount",
   "license": "MIT",
   "engines": {
     "atom": ">=0.180.0"

@@ -15,4 +15,4 @@ Counts the words and characters in your current document and displays them in th
 
 ![A screenshot of your spankin' package](https://cloud.githubusercontent.com/assets/584259/19187373/62f97ad8-8c8b-11e6-85aa-1282f94f509b.gif)
 
-*A special thanks goes to our [awesome contributors](https://github.com/nesQuick/atom-wordcount/graphs/contributors) 👏*
+*A special thanks goes to our [awesome contributors](https://github.com/OleMchls/atom-wordcount/graphs/contributors) 👏*
